@@ -25,6 +25,8 @@ export interface ContactFormData {
   phone: string;
   vehicle: string;
   service: string;
+  contactReason: 'service-request' | 'question' | 'quote-request' | 'emergency' | 'other';
+  serviceType: 'drop-off' | 'pickup-delivery' | 'not-sure';
   message: string;
 }
 
@@ -50,4 +52,21 @@ export interface APIResponse<T> {
       total: number;
     };
   };
+}
+
+// FAQ types
+export interface FAQ {
+  id: number;
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+// How It Works step types
+export interface HowItWorksStep {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  order: number;
 }

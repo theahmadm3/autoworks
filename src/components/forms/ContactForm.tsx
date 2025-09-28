@@ -15,6 +15,8 @@ const ContactForm = ({ formId = 'demo-form-id' }: ContactFormProps) => {
     phone: '',
     vehicle: '',
     service: '',
+    contactReason: 'service-request',
+    serviceType: 'not-sure',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,6 +53,8 @@ const ContactForm = ({ formId = 'demo-form-id' }: ContactFormProps) => {
           phone: '',
           vehicle: '',
           service: '',
+          contactReason: 'service-request',
+          serviceType: 'not-sure',
           message: ''
         });
       } else {
@@ -151,6 +155,45 @@ const ContactForm = ({ formId = 'demo-form-id' }: ContactFormProps) => {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Year, Make, Model (e.g., 2018 Honda Civic)"
           />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label htmlFor="contactReason" className="block text-sm font-medium text-gray-700 mb-2">
+            Reason for Contact *
+          </label>
+          <select
+            id="contactReason"
+            name="contactReason"
+            required
+            value={formData.contactReason}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="service-request">Service Request</option>
+            <option value="question">General Question</option>
+            <option value="quote-request">Quote Request</option>
+            <option value="emergency">Emergency/Breakdown</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="serviceType" className="block text-sm font-medium text-gray-700 mb-2">
+            Service Preference
+          </label>
+          <select
+            id="serviceType"
+            name="serviceType"
+            value={formData.serviceType}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="pickup-delivery">Pick-Up & Delivery</option>
+            <option value="drop-off">I&apos;ll Drop Off</option>
+            <option value="not-sure">Not Sure</option>
+          </select>
         </div>
       </div>
 

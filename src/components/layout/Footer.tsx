@@ -52,8 +52,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/appointments" className="text-gray-300 hover:text-white transition-colors">
-                  Book Appointment
+                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
+                  Get Quote
                 </Link>
               </li>
             </ul>
@@ -105,8 +105,8 @@ const Footer = () => {
             © {currentYear} {BUSINESS_INFO.name}. All rights reserved.
           </p>
           <div className="mt-4 sm:mt-0">
-            <Link href="/appointments" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-colors">
-              Schedule Service
+            <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-colors">
+              Request Service
             </Link>
           </div>
         </div>

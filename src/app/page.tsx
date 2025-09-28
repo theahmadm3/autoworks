@@ -1,110 +1,164 @@
 import Link from 'next/link';
-import { CheckCircle, Clock, Shield, Award } from 'lucide-react';
+import { 
+  Smartphone, 
+  Truck, 
+  Shield, 
+  Award, 
+  Clock, 
+  Settings, 
+  Cpu, 
+  Calendar,
+  Wrench,
+  CheckCircle,
+  Star,
+  Phone,
+  Mail
+} from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { DEFAULT_SERVICES, BUSINESS_INFO } from '@/lib/constants';
+import { VALUE_PROPOSITIONS, BUSINESS_INFO } from '@/lib/constants';
+import { 
+  getFeaturedServices, 
+  getFeaturedTestimonials, 
+  getFAQs, 
+  getHowItWorksSteps 
+} from '@/lib/strapi';
+import { FAQSection } from '@/components/FAQSection';
 
-export default function Home() {
-  const features = [
-    {
-      icon: CheckCircle,
-      title: 'Certified Technicians',
-      description: 'ASE-certified mechanics with years of experience in automotive repair.'
-    },
-    {
-      icon: Clock,
-      title: 'Quick Turnaround',
-      description: 'Fast, efficient service to get you back on the road as soon as possible.'
-    },
-    {
-      icon: Shield,
-      title: 'Quality Guarantee',
-      description: 'All our work is backed by comprehensive warranties for your peace of mind.'
-    },
-    {
-      icon: Award,
-      title: '25+ Years Experience',
-      description: 'Trusted by thousands of customers with over two decades of service excellence.'
-    }
-  ];
+export default async function Home() {
+  // Server-side data fetching - this is the conventional pattern for Next.js App Router
+  const [services, testimonials, faqs, howItWorksSteps] = await Promise.all([
+    getFeaturedServices(6),
+    getFeaturedTestimonials(3),
+    getFAQs(),
+    getHowItWorksSteps()
+  ]);
+
+  const getIconComponent = (iconName: string) => {
+    const icons = {
+      smartphone: Smartphone,
+      truck: Truck,
+      shield: Shield,
+      award: Award,
+      clock: Clock,
+      settings: Settings,
+      cpu: Cpu,
+      calendar: Calendar,
+      wrench: Wrench,
+      'check-circle': CheckCircle
+    };
+    return icons[iconName as keyof typeof icons] || CheckCircle;
+  };
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Expert Auto Repair 
-                <span className="text-blue-300"> You Can Trust</span>
-              </h1>
-              <p className="text-xl mb-8 text-blue-100">
-                Professional automotive services with honest pricing, quality parts, and certified technicians. 
-                Your vehicle deserves the best care.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/appointments">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Book Appointment
-                  </Button>
-                </Link>
-                <Link href="/services">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto bg-transparent border-white text-white hover:bg-white hover:text-blue-900">
-                    View Services
-                  </Button>
-                </Link>
-              </div>
+      {/* Hero Section - Cleaner Design */}
+      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              On-Demand Auto Repair
+              <span className="block text-blue-300 text-3xl md:text-5xl lg:text-6xl mt-2">
+                With Pick-Up & Delivery
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              Professional mechanics come to you. Transparent pricing, quality guaranteed, 
+              and your car returned safely to your door.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Link href="/contact">
+                <Button size="lg" className="text-lg px-8 py-4 bg-white text-blue-900 hover:bg-gray-100">
+                  Get Free Quote
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline" size="lg" className="text-lg px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-900">
+                  Emergency Service
+                </Button>
+              </Link>
             </div>
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                <h3 className="text-2xl font-semibold mb-4">Get A Quote Today</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span>Oil Change Service:</span>
-                    <span className="font-semibold">Starting at $49.99</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Brake Service:</span>
-                    <span className="font-semibold">Starting at $149.99</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Engine Diagnostics:</span>
-                    <span className="font-semibold">Starting at $99.99</span>
-                  </div>
-                  <div className="border-t border-white/20 pt-4 mt-4">
-                    <p className="text-center text-blue-100">
-                      Call <span className="font-semibold">{BUSINESS_INFO.phone}</span> for detailed pricing
-                    </p>
-                  </div>
+            
+            {/* Key differentiators */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div className="flex items-center justify-center mb-2">
+                  <Smartphone className="h-6 w-6 mr-2" />
+                  <span className="font-semibold">Book Online</span>
                 </div>
+                <p className="text-sm text-blue-100">Website, Instagram, or email</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                <div className="flex items-center justify-center mb-2">
+                  <Truck className="h-6 w-6 mr-2" />
+                  <span className="font-semibold">We Come to You</span>
+                </div>
+                <p className="text-sm text-blue-100">Pick-up, repair, deliver</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      {/* How It Works */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose AutoWorks?</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">How It Works</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We&apos;re committed to providing exceptional automotive service with integrity, quality, and customer satisfaction as our top priorities.
+              Getting your car serviced has never been easier. Here&apos;s our simple 4-step process.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
+            {howItWorksSteps.map((step) => {
+              const Icon = getIconComponent(step.icon);
               return (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                  <CardContent>
-                    <div className="flex justify-center mb-4">
-                      <Icon className="h-12 w-12 text-blue-600" />
+                <div key={step.id} className="text-center">
+                  <div className="bg-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Icon className="h-10 w-10 text-white" />
+                  </div>
+                  <div className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-bold">
+                    {step.order}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Value Propositions - Highlighting On-Demand and Pick-Up & Delivery */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Why Choose AutoWorks?</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              We&apos;re revolutionizing auto repair with convenience, transparency, and professional expertise.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {VALUE_PROPOSITIONS.map((prop) => {
+              const Icon = getIconComponent(prop.icon);
+              const isHighlighted = prop.title === 'On-Demand Service' || prop.title === 'Pick-Up & Delivery';
+              
+              return (
+                <Card key={prop.title} className={`text-center hover:shadow-lg transition-shadow ${isHighlighted ? 'ring-2 ring-blue-500 bg-blue-50' : ''}`}>
+                  <CardContent className="pt-8">
+                    <div className="flex justify-center mb-6">
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center ${isHighlighted ? 'bg-blue-600' : 'bg-gray-100'}`}>
+                        <Icon className={`h-8 w-8 ${isHighlighted ? 'text-white' : 'text-blue-600'}`} />
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-gray-600">{feature.description}</p>
+                    <h3 className={`text-xl font-semibold mb-3 ${isHighlighted ? 'text-blue-900' : ''}`}>
+                      {prop.title}
+                      {isHighlighted && <span className="ml-2 text-blue-600">★</span>}
+                    </h3>
+                    <p className="text-gray-600">{prop.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -113,27 +167,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="py-16">
+      {/* Services Preview with CTAs */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Expert Services</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Our Expert Services</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              From routine maintenance to complex repairs, our certified technicians handle it all with professional expertise.
+              From routine maintenance to complex repairs, our certified mechanics handle it all with professional expertise.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {DEFAULT_SERVICES.slice(0, 6).map((service) => (
-              <Card key={service.id} className="hover:shadow-lg transition-shadow">
+            {services.slice(0, 6).map((service) => (
+              <Card key={service.id} className="hover:shadow-lg transition-shadow h-full flex flex-col">
                 <CardHeader>
-                  <CardTitle>{service.name}</CardTitle>
+                  <CardTitle className="text-xl">{service.name}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-blue-600 font-semibold">{service.price}</span>
-                    <span className="text-sm text-gray-500">{service.duration}</span>
+                <CardContent className="flex-grow flex flex-col">
+                  <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
+                  
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-blue-600 font-semibold">{service.price}</span>
+                      <span className="text-sm text-gray-500">{service.duration}</span>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-2">
+                      <Link href="/contact">
+                        <Button className="w-full text-sm">
+                          Get Quote
+                        </Button>
+                      </Link>
+                      <Link href="/contact">
+                        <Button variant="outline" className="w-full text-sm">
+                          Book Now
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -148,24 +218,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">What Our Customers Say</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Don&apos;t just take our word for it. Here&apos;s what real customers think about our service.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.id} className="hover:shadow-lg transition-shadow">
+                <CardContent className="pt-6">
+                  <div className="flex items-center mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-600 mb-6 italic">&quot;{testimonial.comment}&quot;</p>
+                  <div className="border-t pt-4">
+                    <p className="font-semibold">{testimonial.name}</p>
+                    {testimonial.vehicle && (
+                      <p className="text-sm text-gray-500">{testimonial.vehicle}</p>
+                    )}
+                    {testimonial.service && (
+                      <p className="text-sm text-blue-600">{testimonial.service}</p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <FAQSection faqs={faqs} />
+
       {/* CTA Section */}
-      <section className="bg-blue-900 text-white py-16">
+      <section className="bg-blue-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Service Your Vehicle?</h2>
+          <h2 className="text-4xl font-bold mb-4">Ready for Hassle-Free Auto Repair?</h2>
           <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-            Don&apos;t wait for problems to get worse. Schedule your appointment today and experience the AutoWorks difference.
+            Experience the convenience of on-demand service with pick-up and delivery. 
+            Professional repairs, transparent pricing, guaranteed quality.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/appointments">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100">
-                Schedule Appointment
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link href="/contact">
+              <Button size="lg" className="text-lg px-8 py-4 bg-white text-blue-900 hover:bg-gray-100">
+                Get Free Quote
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-900">
-                Get Quote
+              <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-blue-900">
+                Emergency Service
               </Button>
             </Link>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-blue-100">
+            <div className="flex items-center">
+              <Phone className="h-5 w-5 mr-2" />
+              <span>{BUSINESS_INFO.phone}</span>
+            </div>
+            <div className="flex items-center">
+              <Mail className="h-5 w-5 mr-2" />
+              <span>{BUSINESS_INFO.email}</span>
+            </div>
           </div>
         </div>
       </section>

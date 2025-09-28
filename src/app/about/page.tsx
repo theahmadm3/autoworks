@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { Users, Award, Shield, Heart } from 'lucide-react';
+import { Users, Award, Shield, Smartphone, Truck, Clock, Settings, Cpu } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { BUSINESS_INFO } from '@/lib/constants';
+import { BUSINESS_INFO, VALUE_PROPOSITIONS } from '@/lib/constants';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -11,28 +11,18 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const values = [
-    {
-      icon: Shield,
-      title: 'Trust & Integrity',
-      description: 'We believe in honest communication and transparent pricing. No surprises, no hidden fees - just straightforward service you can count on.'
-    },
-    {
-      icon: Award,
-      title: 'Quality Workmanship',
-      description: 'Our ASE-certified technicians use the latest diagnostic equipment and high-quality parts to ensure your vehicle receives the best care possible.'
-    },
-    {
-      icon: Heart,
-      title: 'Customer First',
-      description: 'Your satisfaction is our priority. We take the time to explain repairs, answer questions, and ensure you feel confident in our service.'
-    },
-    {
-      icon: Users,
-      title: 'Community Focused',
-      description: 'As a local business, we\'re committed to serving our community with reliable automotive services and building lasting relationships.'
-    }
-  ];
+  const getIconComponent = (iconName: string) => {
+    const icons = {
+      smartphone: Smartphone,
+      truck: Truck, 
+      shield: Shield,
+      award: Award,
+      clock: Clock,
+      settings: Settings,
+      cpu: Cpu
+    };
+    return icons[iconName as keyof typeof icons] || Shield;
+  };
 
   const teamMembers = [
     {
@@ -65,7 +55,7 @@ export default function AboutPage() {
               About AutoWorks
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Your trusted automotive repair partners since 1998. Built on quality, integrity, and exceptional customer service.
+              Revolutionizing auto repair with on-demand service, pick-up & delivery, and transparent pricing. Professional mechanics you can trust.
             </p>
           </div>
         </div>
@@ -123,27 +113,25 @@ export default function AboutPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Values</h2>
+            <h2 className="text-3xl font-bold mb-4">What Makes Us Different</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              These core principles guide everything we do and shape how we serve our customers every day.
+              We&apos;re not just another repair shop. Here&apos;s how we&apos;re revolutionizing auto repair with modern convenience and professional expertise.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, index) => {
-              const Icon = value.icon;
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {VALUE_PROPOSITIONS.slice(0, 6).map((value) => {
+              const Icon = getIconComponent(value.icon);
               return (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0">
+                <Card key={value.title} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6 text-center">
+                    <div className="flex justify-center mb-4">
+                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
                         <Icon className="h-8 w-8 text-blue-600" />
                       </div>
-                      <div>
-                        <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                        <p className="text-gray-600">{value.description}</p>
-                      </div>
                     </div>
+                    <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
+                    <p className="text-gray-600">{value.description}</p>
                   </CardContent>
                 </Card>
               );
@@ -201,9 +189,9 @@ export default function AboutPage() {
                   Get Directions
                 </Button>
               </Link>
-              <Link href="/appointments">
+              <Link href="/contact">
                 <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-900">
-                  Schedule Visit
+                  Get Quote
                 </Button>
               </Link>
             </div>
