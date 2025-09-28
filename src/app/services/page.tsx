@@ -1,24 +1,18 @@
-'use client';
-
-import { useEffect, useState } from 'react';
+import { Metadata } from 'next';
 import { Wrench, CheckCircle, Clock, DollarSign } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
-import { DEFAULT_SERVICES } from '@/lib/constants';
-import { getServices } from '@/lib/utils';
-import { Service } from '@/types';
+import { getServices } from '@/lib/strapi';
 import Link from 'next/link';
 
-export default function ServicesPage() {
-  const [services, setServices] = useState<Service[]>(DEFAULT_SERVICES);
+export const metadata: Metadata = {
+  title: 'Auto Repair Services | AutoWorks',
+  description: 'Comprehensive automotive repair services including oil changes, brake repair, engine diagnostics, and more. Professional mechanics with quality parts and fair pricing.',
+};
 
-  useEffect(() => {
-    getServices().then(data => {
-      if (data.length > 0) {
-        setServices(data);
-      }
-    });
-  }, []);
+export default async function ServicesPage() {
+  // Server-side data fetching with Strapi integration
+  const services = await getServices();
   return (
     <div className="min-h-screen">
       {/* Hero Section */}

@@ -1,7 +1,4 @@
-'use client';
-
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import { 
   Smartphone, 
   Truck, 
@@ -14,42 +11,28 @@ import {
   Wrench,
   CheckCircle,
   Star,
-  ChevronDown,
   Phone,
   Mail
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
+import { VALUE_PROPOSITIONS, BUSINESS_INFO } from '@/lib/constants';
 import { 
-  DEFAULT_SERVICES, 
-  DEFAULT_TESTIMONIALS, 
-  DEFAULT_FAQS, 
-  DEFAULT_HOW_IT_WORKS, 
-  VALUE_PROPOSITIONS,
-  BUSINESS_INFO 
-} from '@/lib/constants';
-import { getServices, getTestimonials, getFAQs, getHowItWorksSteps } from '@/lib/utils';
+  getFeaturedServices, 
+  getFeaturedTestimonials, 
+  getFAQs, 
+  getHowItWorksSteps 
+} from '@/lib/strapi';
+import { FAQSection } from '@/components/FAQSection';
 
-export default function Home() {
-  const [services, setServices] = useState(DEFAULT_SERVICES);
-  const [testimonials, setTestimonials] = useState(DEFAULT_TESTIMONIALS);
-  const [faqs, setFaqs] = useState(DEFAULT_FAQS);
-  const [howItWorksSteps, setHowItWorksSteps] = useState(DEFAULT_HOW_IT_WORKS);
-
-  useEffect(() => {
-    // Try to fetch from Strapi, fall back to defaults
-    Promise.all([
-      getServices().then(data => data.length > 0 ? data : DEFAULT_SERVICES),
-      getTestimonials().then(data => data.length > 0 ? data : DEFAULT_TESTIMONIALS),
-      getFAQs().then(data => data.length > 0 ? data : DEFAULT_FAQS),
-      getHowItWorksSteps().then(data => data.length > 0 ? data : DEFAULT_HOW_IT_WORKS)
-    ]).then(([servicesData, testimonialsData, faqsData, stepsData]) => {
-      setServices(servicesData);
-      setTestimonials(testimonialsData);
-      setFaqs(faqsData);
-      setHowItWorksSteps(stepsData);
-    });
-  }, []);
+export default async function Home() {
+  // Server-side data fetching - this is the conventional pattern for Next.js App Router
+  const [services, testimonials, faqs, howItWorksSteps] = await Promise.all([
+    getFeaturedServices(6),
+    getFeaturedTestimonials(3),
+    getFAQs(),
+    getHowItWorksSteps()
+  ]);
 
   const getIconComponent = (iconName: string) => {
     const icons = {
@@ -307,50 +290,5 @@ export default function Home() {
         </div>
       </section>
     </>
-  );
-}
-
-// FAQ Component with expand/collapse
-function FAQSection({ faqs }: { faqs: { id: number; question: string; answer: string }[] }) {
-  return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-xl text-gray-600">
-            Everything you need to know about our service
-          </p>
-        </div>
-        
-        <div className="space-y-4">
-          {faqs.map((faq) => (
-            <FAQItem key={faq.id} faq={faq} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FAQItem({ faq }: { faq: { id: number; question: string; answer: string } }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Card className="hover:shadow-md transition-shadow">
-      <CardContent className="p-0">
-        <button
-          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <h3 className="text-lg font-semibold pr-4">{faq.question}</h3>
-          <ChevronDown className={`h-5 w-5 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-        </button>
-        {isOpen && (
-          <div className="px-6 pb-4">
-            <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-          </div>
-        )}
-      </CardContent>
-    </Card>
   );
 }
