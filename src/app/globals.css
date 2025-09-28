@@ -1,22 +1,16 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;700&display=swap');
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
-/* Industrial/Rugged Design Elements */
 .industrial-pattern {
-  background-image: 
-    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
   background-size: 20px 20px;
 }
 
 .tool-shadow {
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .rugged-gradient {
@@ -41,17 +35,17 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Typography Styles */
 .display-font {
-  font-family: 'Bebas Neue', cursive;
+  font-family: system-ui, sans-serif;
+  font-weight: 900;
   letter-spacing: 0.05em;
 }
 
 .condensed-font {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: system-ui, sans-serif;
+  font-weight: 700;
 }
 
-/* Industrial Button Styles */
 .btn-industrial {
   background: linear-gradient(135deg, #ff6b35 0%, #d63031 100%);
   border: 2px solid #ff6b35;
@@ -60,23 +54,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-industrial::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.btn-industrial:hover::before {
-  left: 100%;
 }
 
 .btn-industrial:hover {

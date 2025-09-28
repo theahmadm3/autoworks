@@ -73,12 +73,15 @@ const Header = () => {
                 className={`${
                   item.primary
                     ? 'btn-industrial px-6 py-3 text-sm font-bold'
-                    : 'text-gray-700 hover:text-orange-500 transition-colors font-semibold condensed-font text-lg tracking-wide'
-                } relative group`}
+                    : 'text-gray-800 hover:text-orange-500 transition-colors font-bold condensed-font text-lg tracking-wide relative group'
+                } relative`}
               >
                 {item.name}
                 {!item.primary && (
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                  <>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                    <div className="absolute -inset-2 bg-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </>
                 )}
               </Link>
             ))}
@@ -106,11 +109,14 @@ const Header = () => {
                   className={`${
                     item.primary
                       ? 'btn-industrial text-center py-3 font-bold'
-                      : 'text-gray-700 hover:text-orange-500 px-4 py-3 font-semibold condensed-font text-lg tracking-wide hover:bg-gray-50 rounded-md'
+                      : 'text-gray-800 hover:text-orange-500 px-4 py-3 font-bold condensed-font text-lg tracking-wide hover:bg-orange-50 transition-all relative group'
                   } transition-colors`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
+                  {!item.primary && (
+                    <div className="absolute left-0 top-1/2 w-1 h-0 bg-orange-500 transition-all duration-300 group-hover:h-full group-hover:top-0"></div>
+                  )}
                 </Link>
               ))}
             </nav>

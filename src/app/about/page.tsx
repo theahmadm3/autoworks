@@ -48,17 +48,29 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 rugged-gradient"></div>
+        <div className="absolute inset-0 industrial-pattern"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/70 to-gray-900/90"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-white">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              About AutoWorks
+            <div className="inline-flex items-center bg-orange-500/10 border border-orange-500/30 rounded-full px-6 py-2 mb-6">
+              <Shield className="h-5 w-5 mr-2 text-orange-400" />
+              <span className="condensed-font font-bold text-orange-400 tracking-wider text-sm">
+                OUR STORY
+              </span>
+            </div>
+            <h1 className="display-font text-4xl md:text-5xl font-normal mb-6 tracking-wide">
+              ABOUT AUTOWORKS
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Revolutionizing auto repair with on-demand service, pick-up & delivery, and transparent pricing. Professional mechanics you can trust.
             </p>
           </div>
         </div>
+        
+        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-orange-500 to-red-500"></div>
       </section>
 
       {/* Our Story */}
@@ -84,24 +96,24 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
-            <div className="bg-gray-100 rounded-lg p-8">
-              <h3 className="text-2xl font-semibold mb-6">By the Numbers</h3>
+            <div className="bg-gray-800 rounded-lg p-8 tool-shadow">
+              <h3 className="display-font text-2xl font-semibold mb-6 text-white tracking-wide">BY THE NUMBERS</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">25+</div>
-                  <div className="text-gray-600">Years in Business</div>
+                  <div className="text-3xl font-bold text-orange-400 mb-2 display-font">25+</div>
+                  <div className="text-gray-300 condensed-font">Years in Business</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">10,000+</div>
-                  <div className="text-gray-600">Vehicles Serviced</div>
+                  <div className="text-3xl font-bold text-orange-400 mb-2 display-font">10,000+</div>
+                  <div className="text-gray-300 condensed-font">Vehicles Serviced</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
-                  <div className="text-gray-600">Customer Satisfaction</div>
+                  <div className="text-3xl font-bold text-orange-400 mb-2 display-font">98%</div>
+                  <div className="text-gray-300 condensed-font">Customer Satisfaction</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">5-Star</div>
-                  <div className="text-gray-600">Average Rating</div>
+                  <div className="text-3xl font-bold text-orange-400 mb-2 display-font">5-Star</div>
+                  <div className="text-gray-300 condensed-font">Average Rating</div>
                 </div>
               </div>
             </div>
@@ -120,20 +132,31 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {VALUE_PROPOSITIONS.slice(0, 6).map((value) => {
+            {VALUE_PROPOSITIONS.slice(0, 6).map((value, index) => {
               const Icon = getIconComponent(value.icon);
               return (
-                <Card key={value.title} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6 text-center">
-                    <div className="flex justify-center mb-4">
-                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                        <Icon className="h-8 w-8 text-blue-600" />
+                <div key={value.title} className="group relative">
+                  <Card className="hover:shadow-lg transition-shadow h-full tool-shadow border-2 border-gray-200 hover:border-orange-500/50">
+                    <CardContent className="p-6 text-center relative">
+                      <div className="absolute top-0 right-0 w-12 h-12 bg-gray-800 group-hover:bg-orange-500 transition-colors duration-300"></div>
+                      <div className="absolute top-0 right-0 w-8 h-8 bg-white transform rotate-45 translate-x-2 translate-y-2"></div>
+                      
+                      <div className="flex justify-center mb-4">
+                        <div className="w-16 h-16 bg-gray-800 group-hover:bg-orange-500 transition-colors duration-300 flex items-center justify-center tool-shadow">
+                          <Icon className="h-8 w-8 text-orange-400 group-hover:text-white transition-colors duration-300" />
+                        </div>
                       </div>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                    <p className="text-gray-600">{value.description}</p>
-                  </CardContent>
-                </Card>
+                      <h3 className="text-xl font-semibold mb-3 condensed-font tracking-wide">{value.title}</h3>
+                      <p className="text-gray-600">{value.description}</p>
+                      
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                    </CardContent>
+                  </Card>
+                  
+                  <div className="absolute -top-2 -left-2 w-6 h-6 bg-orange-500 text-white text-xs font-bold condensed-font flex items-center justify-center transform rotate-45">
+                    <span className="transform -rotate-45">{index + 1}</span>
+                  </div>
+                </div>
               );
             })}
           </div>
