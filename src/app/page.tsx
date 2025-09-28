@@ -350,38 +350,101 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">What Our Customers Say</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Don&apos;t just take our word for it. Here&apos;s what real customers think about our service.
+      {/* Testimonials - Enhanced Design */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-tr from-blue-100 to-transparent"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-20">
+            <div className="inline-block px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-700 rounded-full text-sm font-medium mb-6">
+              Customer Reviews
+            </div>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+              What Our Customers Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Don&apos;t just take our word for it. Here&apos;s what real customers think about our 
+              service and the convenience of our pick-up & delivery approach.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(Math.max(0, Math.min(5, Math.round(testimonial.rating || 0))))].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 mb-6 italic">&quot;{testimonial.comment}&quot;</p>
-                  <div className="border-t pt-4">
-                    <p className="font-semibold">{testimonial.name}</p>
-                    {testimonial.vehicle && (
-                      <p className="text-sm text-gray-500">{testimonial.vehicle}</p>
-                    )}
-                    {testimonial.service && (
-                      <p className="text-sm text-blue-600">{testimonial.service}</p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {testimonials.map((testimonial, index) => {
+              const gradients = [
+                'from-blue-500 to-blue-600',
+                'from-purple-500 to-purple-600',
+                'from-green-500 to-green-600'
+              ];
+              
+              return (
+                <Card key={testimonial.id} variant="elevated" className="relative group overflow-hidden">
+                  <CardContent className="p-8">
+                    {/* Quote icon */}
+                    <div className="absolute top-4 right-4 opacity-10">
+                      <div className="text-6xl font-serif text-gray-400">"</div>
+                    </div>
+                    
+                    {/* Stars */}
+                    <div className="flex items-center mb-6">
+                      <div className="flex space-x-1">
+                        {[...Array(Math.max(0, Math.min(5, Math.round(testimonial.rating || 0))))].map((_, i) => (
+                          <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                        ))}
+                      </div>
+                      <span className="ml-2 text-sm text-gray-500 font-medium">
+                        {testimonial.rating}/5
+                      </span>
+                    </div>
+                    
+                    {/* Comment */}
+                    <blockquote className="text-gray-700 mb-8 text-lg leading-relaxed italic">
+                      "{testimonial.comment}"
+                    </blockquote>
+                    
+                    {/* Author info */}
+                    <div className="border-t border-gray-100 pt-6">
+                      <div className="flex items-center">
+                        <div className={`w-12 h-12 bg-gradient-to-br ${gradients[index % gradients.length]} rounded-full flex items-center justify-center mr-4`}>
+                          <span className="text-white font-semibold text-lg">
+                            {testimonial.name.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                          {testimonial.vehicle && (
+                            <p className="text-sm text-gray-500">{testimonial.vehicle}</p>
+                          )}
+                          {testimonial.service && (
+                            <p className="text-sm text-blue-600 font-medium">{testimonial.service}</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+          
+          {/* Stats section */}
+          <div className="mt-20 bg-gradient-to-r from-gray-50 to-blue-50 rounded-3xl p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
+                <div className="text-gray-600 font-medium">Happy Customers</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-blue-600 mb-2">4.9★</div>
+                <div className="text-gray-600 font-medium">Average Rating</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-blue-600 mb-2">24hr</div>
+                <div className="text-gray-600 font-medium">Typical Turnaround</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -389,34 +452,74 @@ export default async function Home() {
       {/* FAQ Section */}
       <FAQSection faqs={faqs} />
 
-      {/* CTA Section */}
-      <section className="bg-blue-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready for Hassle-Free Auto Repair?</h2>
-          <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+      {/* CTA Section - Enhanced Design */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Enhanced gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-slate-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+        
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-float" style={{animationDelay: '3s'}}></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          <div className="mb-8">
+            <span className="inline-block px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-blue-300 text-sm font-medium backdrop-blur-sm border border-blue-500/30">
+              Ready to Get Started?
+            </span>
+          </div>
+          
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Ready for Hassle-Free 
+            <span className="block bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Auto Repair?
+            </span>
+          </h2>
+          
+          <p className="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Experience the convenience of on-demand service with pick-up and delivery. 
-            Professional repairs, transparent pricing, guaranteed quality.
+            <span className="text-blue-300 font-medium">Professional repairs</span>, 
+            <span className="text-blue-300 font-medium"> transparent pricing</span>, 
+            <span className="text-blue-300 font-medium"> guaranteed quality</span>.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
             <Link href="/contact">
-              <Button size="lg" className="text-lg px-8 py-4 bg-white text-blue-900 hover:bg-gray-100">
+              <Button size="xl" className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-2xl transform hover:scale-105">
+                <span className="mr-2">🚗</span>
                 Get Free Quote
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="outline" size="lg" className="text-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-blue-900">
+              <Button variant="outline" size="xl" className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white backdrop-blur-sm">
+                <span className="mr-2">🚨</span>
                 Emergency Service
               </Button>
             </Link>
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-blue-100">
-            <div className="flex items-center">
-              <Phone className="h-5 w-5 mr-2" />
-              <span>{BUSINESS_INFO.phone}</span>
+          
+          {/* Contact info with enhanced styling */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+              <div className="flex items-center justify-center mb-2">
+                <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mr-3">
+                  <Phone className="h-5 w-5 text-white" />
+                </div>
+                <span className="font-semibold text-lg">Call Us Now</span>
+              </div>
+              <p className="text-blue-200 font-medium text-lg">{BUSINESS_INFO.phone}</p>
             </div>
-            <div className="flex items-center">
-              <Mail className="h-5 w-5 mr-2" />
-              <span>{BUSINESS_INFO.email}</span>
+            
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+              <div className="flex items-center justify-center mb-2">
+                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center mr-3">
+                  <Mail className="h-5 w-5 text-white" />
+                </div>
+                <span className="font-semibold text-lg">Email Us</span>
+              </div>
+              <p className="text-blue-200 font-medium text-lg">{BUSINESS_INFO.email}</p>
             </div>
           </div>
         </div>
