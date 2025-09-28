@@ -1,16 +1,24 @@
-import { Metadata } from 'next';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { Wrench, CheckCircle, Clock, DollarSign } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { DEFAULT_SERVICES } from '@/lib/constants';
+import { getServices } from '@/lib/utils';
+import { Service } from '@/types';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Auto Repair Services',
-  description: 'Comprehensive automotive repair services including oil changes, brake repair, engine diagnostics, and more. Professional mechanics with quality parts and fair pricing.',
-};
-
 export default function ServicesPage() {
+  const [services, setServices] = useState<Service[]>(DEFAULT_SERVICES);
+
+  useEffect(() => {
+    getServices().then(data => {
+      if (data.length > 0) {
+        setServices(data);
+      }
+    });
+  }, []);
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -32,7 +40,7 @@ export default function ServicesPage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {DEFAULT_SERVICES.map((service) => (
+            {services.map((service) => (
               <Card key={service.id} className="hover:shadow-lg transition-shadow h-full">
                 <CardHeader>
                   <CardTitle className="text-xl text-blue-900">{service.name}</CardTitle>
@@ -53,9 +61,9 @@ export default function ServicesPage() {
                     </div>
                     
                     <div className="pt-4 border-t">
-                      <Link href="/appointments">
+                      <Link href="/contact">
                         <Button className="w-full">
-                          Book This Service
+                          Request Quote
                         </Button>
                       </Link>
                     </div>
@@ -113,9 +121,9 @@ export default function ServicesPage() {
             Don&apos;t wait for problems to get worse. Book your service appointment today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/appointments">
+            <Link href="/contact">
               <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100">
-                Schedule Service
+                Request Service
               </Button>
             </Link>
             <Link href="/contact">
