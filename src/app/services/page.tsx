@@ -16,54 +16,72 @@ export default async function ServicesPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 rugged-gradient"></div>
+        <div className="absolute inset-0 industrial-pattern"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/70 to-gray-900/90"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-white">
           <div className="text-center">
-            <Wrench className="h-16 w-16 mx-auto mb-6 text-blue-300" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Expert Auto Repair Services
+            <div className="bg-orange-500/20 p-4 rounded-full w-24 h-24 mx-auto mb-6">
+              <Wrench className="h-16 w-16 mx-auto text-orange-400 animate-wrench" />
+            </div>
+            <h1 className="display-font text-4xl md:text-5xl font-normal mb-6 tracking-wide">
+              EXPERT AUTO REPAIR SERVICES
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               From routine maintenance to complex repairs, our certified technicians provide comprehensive automotive services with honest pricing and quality parts.
             </p>
           </div>
         </div>
+        
+        <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-orange-500 to-red-500"></div>
       </section>
 
       {/* Services Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
-              <Card key={service.id} className="hover:shadow-lg transition-shadow h-full">
-                <CardHeader>
-                  <CardTitle className="text-xl text-blue-900">{service.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <p className="text-gray-600 mb-6">{service.description}</p>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <DollarSign className="h-4 w-4 text-green-600 mr-2" />
-                        <span className="font-semibold text-green-600">{service.price}</span>
+            {services.map((service, index) => (
+              <div key={service.id} className="group relative">
+                <Card className="hover:shadow-lg transition-shadow h-full tool-shadow border-2 border-gray-200 hover:border-orange-500/50">
+                  <CardHeader className="relative">
+                    <div className="absolute top-0 right-0 w-12 h-12 bg-gray-800 group-hover:bg-orange-500 transition-colors duration-300"></div>
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-white transform rotate-45 translate-x-2 translate-y-2"></div>
+                    <CardTitle className="text-xl text-gray-800 condensed-font tracking-wide">{service.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow relative">
+                    <p className="text-gray-600 mb-6">{service.description}</p>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between bg-gray-100 p-3">
+                        <div className="flex items-center">
+                          <DollarSign className="h-4 w-4 text-orange-500 mr-2" />
+                          <span className="font-semibold text-orange-600">{service.price}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="h-4 w-4 text-gray-500 mr-2" />
+                          <span className="text-sm text-gray-500">{service.duration}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <Clock className="h-4 w-4 text-gray-500 mr-2" />
-                        <span className="text-sm text-gray-500">{service.duration}</span>
+                      
+                      <div className="pt-4 border-t">
+                        <Link href="/contact">
+                          <button className="btn-industrial w-full py-3">
+                            Request Quote
+                          </button>
+                        </Link>
                       </div>
                     </div>
                     
-                    <div className="pt-4 border-t">
-                      <Link href="/contact">
-                        <Button className="w-full">
-                          Request Quote
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                  </CardContent>
+                </Card>
+                
+                <div className="absolute -top-2 -left-2 w-8 h-8 bg-orange-500 text-white text-sm font-bold condensed-font flex items-center justify-center transform rotate-45">
+                  <span className="transform -rotate-45">{String(index + 1).padStart(2, '0')}</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>
