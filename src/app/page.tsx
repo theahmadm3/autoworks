@@ -14,7 +14,6 @@ import {
   Phone,
   Mail
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { VALUE_PROPOSITIONS, BUSINESS_INFO } from '@/lib/constants';
 import { 
@@ -145,7 +144,7 @@ export default async function Home() {
             <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 bg-clip-text text-transparent">How It Works</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"></div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Getting your car serviced has never been easier. Here's our simple 4-step process.
+              Getting your car serviced has never been easier. Here&apos;s our simple 4-step process.
             </p>
           </div>
           
@@ -204,7 +203,7 @@ export default async function Home() {
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-400 via-white to-purple-400 mx-auto mb-8 rounded-full"></div>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              We're revolutionizing auto repair with convenience, transparency, and professional expertise.
+              We&apos;re revolutionizing auto repair with convenience, transparency, and professional expertise.
             </p>
           </div>
           
@@ -381,7 +380,7 @@ export default async function Home() {
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8 rounded-full"></div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Don't just take our word for it. Here's what real customers think about our service.
+              Don&apos;t just take our word for it. Here&apos;s what real customers think about our service.
             </p>
           </div>
           
@@ -408,7 +407,7 @@ export default async function Home() {
                     relative overflow-hidden
                   `}>
                     {/* Quote decoration */}
-                    <div className="absolute top-4 right-4 text-6xl text-gray-200/50 font-serif">"</div>
+                    <div className="absolute top-4 right-4 text-6xl text-gray-200/50 font-serif">&quot;</div>
                     
                     {/* Rating stars */}
                     <div className="flex items-center mb-6">
@@ -419,7 +418,7 @@ export default async function Home() {
                     
                     {/* Testimonial text */}
                     <p className="text-gray-700 mb-8 italic text-lg leading-relaxed font-medium">
-                      "{testimonial.comment}"
+                      &quot;{testimonial.comment}&quot;
                     </p>
                     
                     {/* Customer info */}

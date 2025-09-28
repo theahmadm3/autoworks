@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import { Users, Award, Shield, Smartphone, Truck, Clock, Settings, Cpu } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/Card';
+import { Award, Shield, Smartphone, Truck, Clock, Settings, Cpu } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import { BUSINESS_INFO, VALUE_PROPOSITIONS } from '@/lib/constants';
 import Link from 'next/link';
@@ -99,10 +98,10 @@ export default function AboutPage() {
                   <span className="font-semibold text-gray-900">AutoWorks was founded in 1998</span> with a simple mission: to provide honest, reliable automotive repair services to our local community. What started as a small garage has grown into a full-service automotive center, but our core values remain the same.
                 </p>
                 <p>
-                  Over the past <span className="font-semibold text-blue-600">25+ years</span>, we've built our reputation one satisfied customer at a time. Our team of <span className="font-semibold text-blue-600">ASE-certified technicians</span> combines old-school craftsmanship with modern diagnostic technology to keep your vehicle running at its best.
+                  Over the past <span className="font-semibold text-blue-600">25+ years</span>, we&apos;ve built our reputation one satisfied customer at a time. Our team of <span className="font-semibold text-blue-600">ASE-certified technicians</span> combines old-school craftsmanship with modern diagnostic technology to keep your vehicle running at its best.
                 </p>
                 <p>
-                  We believe that car repair shouldn't be a mystery. That's why we take the time to <span className="font-semibold text-gray-900">explain what we find</span>, show you the parts that need attention, and provide clear, upfront pricing for all our services.
+                  We believe that car repair shouldn&apos;t be a mystery. That&apos;s why we take the time to <span className="font-semibold text-gray-900">explain what we find</span>, show you the parts that need attention, and provide clear, upfront pricing for all our services.
                 </p>
               </div>
               <div className="mt-10">
@@ -166,7 +165,7 @@ export default function AboutPage() {
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-400 via-white to-purple-400 mx-auto mb-8 rounded-full"></div>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              We're not just another repair shop. Here's how we're revolutionizing auto repair with modern convenience and professional expertise.
+              We&apos;re not just another repair shop. Here&apos;s how we&apos;re revolutionizing auto repair with modern convenience and professional expertise.
             </p>
           </div>
 

@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { Wrench, CheckCircle, Clock, DollarSign } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { getServices } from '@/lib/strapi';
 import Link from 'next/link';
@@ -211,7 +210,7 @@ export default async function ServicesPage() {
           <div className="w-32 h-1 bg-gradient-to-r from-blue-400 via-white to-purple-400 mx-auto mb-8 rounded-full"></div>
           
           <p className="text-xl md:text-2xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Don't wait for problems to get worse. 
+            Don&apos;t wait for problems to get worse. 
             <span className="font-semibold text-white">Book your service appointment today</span>.
           </p>
           
