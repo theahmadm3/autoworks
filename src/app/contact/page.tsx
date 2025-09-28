@@ -6,7 +6,7 @@ import { BUSINESS_INFO } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with AutoWorks for automotive repair services. Visit our shop, call for appointments, or send us a message for quotes and questions.',
+  description: 'Get in touch with AUTOWORKS for convenient pickup & delivery auto repair services. Book online or call for appointments across Nigeria.',
 };
 
 export default function ContactPage() {
@@ -17,10 +17,10 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Contact AutoWorks
+              Contact AUTOWORKS
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Ready to service your vehicle? Get in touch with us for appointments, quotes, or any questions about our automotive repair services.
+              Ready for convenient auto repair? Book your pickup & delivery service online, WhatsApp, or Instagram. Nigeria&apos;s most convenient auto repair service.
             </p>
           </div>
         </div>
@@ -32,9 +32,9 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold mb-6">Send Us a Message</h2>
+              <h2 className="text-3xl font-bold mb-6">Request Service</h2>
               <p className="text-gray-600 mb-8">
-                Fill out the form below and we&apos;ll get back to you within 24 hours. For urgent repairs, please call us directly.
+                Tell us about your vehicle and service needs. We&apos;ll provide a transparent quote and schedule convenient pickup & delivery.
               </p>
               <ContactForm formId={process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID} />
             </div>
