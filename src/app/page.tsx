@@ -8,23 +8,23 @@ export default function Home() {
   const features = [
     {
       icon: CheckCircle,
-      title: 'Certified Technicians',
-      description: 'ASE-certified mechanics with years of experience in automotive repair.'
+      title: 'Pickup & Delivery Service',
+      description: 'We collect your car, repair it at our facility, and return it safely - total convenience for busy professionals.'
     },
     {
       icon: Clock,
-      title: 'Quick Turnaround',
-      description: 'Fast, efficient service to get you back on the road as soon as possible.'
+      title: 'Online Booking Available',
+      description: 'Order a mechanic through our website, Instagram, or WhatsApp - no more searching or waiting at workshops.'
     },
     {
       icon: Shield,
-      title: 'Quality Guarantee',
-      description: 'All our work is backed by comprehensive warranties for your peace of mind.'
+      title: 'Transparent Pricing',
+      description: 'Upfront pricing with digital invoices and clear communication - no hidden fees or surprise charges.'
     },
     {
       icon: Award,
-      title: '25+ Years Experience',
-      description: 'Trusted by thousands of customers with over two decades of service excellence.'
+      title: 'Modern Diagnostic Tools',
+      description: 'OBD2 scanners and advanced diagnostic equipment for accurate repairs - not just roadside fixes.'
     }
   ];
 
@@ -36,12 +36,12 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Expert Auto Repair 
-                <span className="text-blue-300"> You Can Trust</span>
+                On-Demand Auto Repair 
+                <span className="text-blue-300"> Pickup & Delivery</span>
               </h1>
               <p className="text-xl mb-8 text-blue-100">
-                Professional automotive services with honest pricing, quality parts, and certified technicians. 
-                Your vehicle deserves the best care.
+                Nigeria&apos;s modern auto repair service. Order a mechanic online, get transparent pricing, 
+                and enjoy convenient pickup & delivery. No more workshop visits!
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/appointments">
@@ -58,23 +58,23 @@ export default function Home() {
             </div>
             <div className="relative">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                <h3 className="text-2xl font-semibold mb-4">Get A Quote Today</h3>
+                <h3 className="text-2xl font-semibold mb-4">Transparent Pricing</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span>Oil Change Service:</span>
-                    <span className="font-semibold">Starting at $49.99</span>
+                    <span className="font-semibold">Starting at ₦15,000</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>Brake Service:</span>
-                    <span className="font-semibold">Starting at $149.99</span>
+                    <span className="font-semibold">Starting at ₦35,000</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span>Engine Diagnostics:</span>
-                    <span className="font-semibold">Starting at $99.99</span>
+                    <span>OBD2 Diagnostics:</span>
+                    <span className="font-semibold">Starting at ₦20,000</span>
                   </div>
                   <div className="border-t border-white/20 pt-4 mt-4">
                     <p className="text-center text-blue-100">
-                      Call <span className="font-semibold">{BUSINESS_INFO.phone}</span> for detailed pricing
+                      Call <span className="font-semibold">{BUSINESS_INFO.phone}</span> or book online
                     </p>
                   </div>
                 </div>
@@ -88,9 +88,10 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose AutoWorks?</h2>
+            <h2 className="text-3xl font-bold mb-4">Why Choose AUTOWORKS?</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We&apos;re committed to providing exceptional automotive service with integrity, quality, and customer satisfaction as our top priorities.
+              Nigeria&apos;s modern auto repair service combining convenience, technology, and transparency. 
+              Perfect for busy professionals, fleet owners, and Uber/Bolt drivers.
             </p>
           </div>
           
@@ -117,9 +118,10 @@ export default function Home() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Expert Services</h2>
+            <h2 className="text-3xl font-bold mb-4">Our Professional Services</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              From routine maintenance to complex repairs, our certified technicians handle it all with professional expertise.
+              Convenient pickup & delivery service with skilled mechanics using modern diagnostic tools. 
+              Perfect for busy professionals, fleet owners, and e-hailing drivers.
             </p>
           </div>
 
@@ -151,9 +153,9 @@ export default function Home() {
       {/* CTA Section */}
       <section className="bg-blue-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Service Your Vehicle?</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready for Convenient Auto Repair?</h2>
           <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-            Don&apos;t wait for problems to get worse. Schedule your appointment today and experience the AutoWorks difference.
+            Experience Nigeria&apos;s most convenient auto repair service. Book online and enjoy pickup & delivery - no workshop visits needed!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/appointments">
