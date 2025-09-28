@@ -7,51 +7,51 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about AutoWorks - your trusted automotive repair specialists with over 25 years of experience serving the community with quality, integrity, and fair pricing.',
+  description: 'Learn about AUTOWORKS - Nigeria\'s leading tech-driven auto repair service bringing convenience, trust, and professionalism to car servicing with pickup & delivery.',
 };
 
 export default function AboutPage() {
   const values = [
     {
       icon: Shield,
-      title: 'Trust & Integrity',
-      description: 'We believe in honest communication and transparent pricing. No surprises, no hidden fees - just straightforward service you can count on.'
+      title: 'Pickup & Delivery',
+      description: 'Total convenience for busy professionals. We collect your car, repair it professionally, and return it safely to you.'
     },
     {
       icon: Award,
-      title: 'Quality Workmanship',
-      description: 'Our ASE-certified technicians use the latest diagnostic equipment and high-quality parts to ensure your vehicle receives the best care possible.'
+      title: 'Modern Technology', 
+      description: 'OBD2 scanners and advanced diagnostic equipment ensure accurate repairs - not just roadside fixes.'
     },
     {
       icon: Heart,
-      title: 'Customer First',
-      description: 'Your satisfaction is our priority. We take the time to explain repairs, answer questions, and ensure you feel confident in our service.'
+      title: 'Transparent Pricing',
+      description: 'Upfront pricing with digital invoices and clear communication. No hidden fees or surprise charges.'
     },
     {
       icon: Users,
-      title: 'Community Focused',
-      description: 'As a local business, we\'re committed to serving our community with reliable automotive services and building lasting relationships.'
+      title: 'Customer Convenience',
+      description: 'Order a mechanic online through our website, Instagram, or WhatsApp. No more workshop visits or waiting.'
     }
   ];
 
   const teamMembers = [
     {
-      name: 'Mike Johnson',
-      role: 'Owner & Master Technician',
-      experience: '25+ years',
-      specialties: 'Engine Diagnostics, Transmission Repair'
+      name: 'Adebayo Okafor',
+      role: 'Head of Operations',
+      experience: '10+ years',
+      specialties: 'Fleet Management, Diagnostic Systems'
     },
     {
-      name: 'Sarah Chen',
-      role: 'ASE Master Technician',
-      experience: '15+ years',
-      specialties: 'Brake Systems, Electrical Systems'
-    },
-    {
-      name: 'Carlos Rodriguez',
+      name: 'Fatima Aliyu',
       role: 'Senior Technician',
-      experience: '12+ years',
-      specialties: 'AC Systems, Preventive Maintenance'
+      experience: '8+ years',
+      specialties: 'Engine Diagnostics, OBD2 Systems'
+    },
+    {
+      name: 'Chinedu Nwankwo',
+      role: 'Mobile Technician',
+      experience: '6+ years',
+      specialties: 'Pickup & Delivery, On-site Repairs'
     }
   ];
 
@@ -62,10 +62,10 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              About AutoWorks
+              About AUTOWORKS
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Your trusted automotive repair partners since 1998. Built on quality, integrity, and exceptional customer service.
+              Nigeria&apos;s leading tech-driven auto repair service. Making car care simple and accessible with convenient pickup & delivery.
             </p>
           </div>
         </div>
@@ -79,13 +79,13 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold mb-6">Our Story</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
-                  AutoWorks was founded in 1998 with a simple mission: to provide honest, reliable automotive repair services to our local community. What started as a small garage has grown into a full-service automotive center, but our core values remain the same.
+                  AUTOWORKS was born from a passion for solving the everyday frustrations of car owners in Nigeria. Founded with the vision of making car care simple and accessible, we bring convenience, trust, and professionalism into car servicing.
                 </p>
                 <p>
-                  Over the past 25+ years, we&apos;ve built our reputation one satisfied customer at a time. Our team of ASE-certified technicians combines old-school craftsmanship with modern diagnostic technology to keep your vehicle running at its best.
+                  Unlike traditional roadside mechanics, we provide pickup-and-delivery service, transparent pricing, and skilled, verified mechanics who use advanced diagnostic tools. Our customers range from busy professionals to e-hailing drivers, logistics companies, and corporate fleets.
                 </p>
                 <p>
-                  We believe that car repair shouldn&apos;t be a mystery. That&apos;s why we take the time to explain what we find, show you the parts that need attention, and provide clear, upfront pricing for all our services.
+                  Though a young and innovative company, AUTOWORKS aims to set a new standard in the Nigerian auto service industry by blending technology, speed, and reliability with excellent customer service.
                 </p>
               </div>
               <div className="mt-8">
@@ -95,23 +95,23 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="bg-gray-100 rounded-lg p-8">
-              <h3 className="text-2xl font-semibold mb-6">By the Numbers</h3>
+              <h3 className="text-2xl font-semibold mb-6">Our Impact</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">25+</div>
-                  <div className="text-gray-600">Years in Business</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
+                  <div className="text-gray-600">Happy Customers</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">10,000+</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">1,200+</div>
                   <div className="text-gray-600">Vehicles Serviced</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
-                  <div className="text-gray-600">Customer Satisfaction</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
+                  <div className="text-gray-600">Pickup & Delivery</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">5-Star</div>
-                  <div className="text-gray-600">Average Rating</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">24hrs</div>
+                  <div className="text-gray-600">Average Turnaround</div>
                 </div>
               </div>
             </div>
@@ -123,9 +123,9 @@ export default function AboutPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Values</h2>
+            <h2 className="text-3xl font-bold mb-4">What Makes Us Different</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              These core principles guide everything we do and shape how we serve our customers every day.
+              These core innovations set AUTOWORKS apart as Nigeria&apos;s most convenient auto repair service.
             </p>
           </div>
 
