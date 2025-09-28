@@ -29,7 +29,7 @@ export default async function Home() {
   // Server-side data fetching - this is the conventional pattern for Next.js App Router
   const [services, testimonials, faqs, howItWorksSteps] = await Promise.all([
     getFeaturedServices(6),
-    getFeaturedTestimonials(3),
+    getFeaturedTestimonials(10),
     getFAQs(),
     getHowItWorksSteps()
   ]);
@@ -233,7 +233,7 @@ export default async function Home() {
               <Card key={testimonial.id} className="hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
                   <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+                    {[...Array(Math.max(0, Math.min(5, Math.round(testimonial.rating || 0))))].map((_, i) => (
                       <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
